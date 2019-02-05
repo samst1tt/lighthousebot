@@ -125,13 +125,13 @@ function getConfig() {
   console.log(`Using runner: ${config.runner}`);
 
   config.pr = {
-    number: parseInt(process.env.TRAVIS_PULL_REQUEST, 10),
-    sha: process.env.TRAVIS_PULL_REQUEST_SHA
+    number: parseInt(process.env.CI_JOB_ID, 10),
+    sha: process.env.CI_COMMIT_SHA
   };
 
-  const repoSlug = process.env.TRAVIS_PULL_REQUEST_SLUG;
+  const repoSlug = process.env.CI_COMMIT_REF_SLUG;
   if (!repoSlug) {
-    throw new Error('This script can only be run on Travis PR requests.');
+    throw new Error('cannot find request slug.');
   }
 
   config.repo = {
@@ -181,8 +181,4 @@ function run(config) {
 
 // Run LH if this is a PR.
 const config = getConfig();
-if (process.env.TRAVIS_EVENT_TYPE === 'pull_request') {
-  run(config);
-} else {
-  console.log('Lighthouse is not run for non-PR commits.');
-}
+run(config);
