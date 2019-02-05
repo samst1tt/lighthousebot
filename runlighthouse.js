@@ -124,21 +124,6 @@ function getConfig() {
   }
   console.log(`Using runner: ${config.runner}`);
 
-  config.pr = {
-    number: parseInt(process.env.CI_JOB_ID, 10),
-    sha: process.env.CI_COMMIT_SHA
-  };
-
-  const repoSlug = process.env.CI_COMMIT_REF_SLUG;
-  if (!repoSlug) {
-    throw new Error('cannot find request slug.');
-  }
-
-  config.repo = {
-    owner: repoSlug.split('/')[0],
-    name: repoSlug.split('/')[1]
-  };
-
   return config;
 }
 
