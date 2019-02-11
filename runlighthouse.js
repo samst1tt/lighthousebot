@@ -126,7 +126,7 @@ function getConfig() {
     printUsageAndExit();
   }
   console.log(`Using runner: ${config.runner}`);
-
+  console.log(config)
   return config;
 }
 
@@ -135,9 +135,9 @@ function getConfig() {
  */
 function run(config) {
   let endpoint;
+  console.log(config);
   let body = JSON.stringify(config);
   console.log(body);
-  console.log(config);
 
   switch (config.runner) {
     case RUNNERS.wpt:
