@@ -151,7 +151,7 @@ function run(config) {
 
   fetch(endpoint, {method: 'POST', body, headers: {
     'Content-Type': 'application/json',
-    'X-API-KEY': NEW_API_KEY
+    'X-API-KEY': '24e6e36cf86c43d3b3b5b82429fb4bea'
   }})
     .then(resp => resp.json())
     .then(json => {
