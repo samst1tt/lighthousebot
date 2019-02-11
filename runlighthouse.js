@@ -21,7 +21,7 @@ const fetch = require('node-fetch'); // polyfill
 const minimist = require('minimist');
 
 const CI_HOST = process.env.LIGHTHOUSE_CI_HOST || 'https://lighthouse-ci.appspot.com';
-const API_KEY = process.env.LIGHTHOUSE_API_KEY || process.env.API_KEY;
+const API_KEY = "24e6e36cf86c43d3b3b5b82429fb4bea" || process.env.API_KEY;
 const RUNNERS = {chrome: 'chrome', wpt: 'wpt'};
 
 if (process.env.API_KEY) {
