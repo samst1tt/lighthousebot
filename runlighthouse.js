@@ -109,7 +109,7 @@ function getConfig() {
     config.thresholds['best-practices'] = Number(argv.bp);
   }
   if ('api' in argv) {
-    API_KEY = Number(argv.api);
+    const NEW_API_KEY = Number(argv.api);
   }
 
   if (!config.addComment && !Object.keys(config.thresholds).length) {
@@ -151,7 +151,7 @@ function run(config) {
 
   fetch(endpoint, {method: 'POST', body, headers: {
     'Content-Type': 'application/json',
-    'X-API-KEY': API_KEY
+    'X-API-KEY': NEW_API_KEY
   }})
     .then(resp => resp.json())
     .then(json => {
