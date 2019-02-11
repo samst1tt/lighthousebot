@@ -21,7 +21,7 @@ const fetch = require('node-fetch'); // polyfill
 const minimist = require('minimist');
 
 const CI_HOST = process.env.LIGHTHOUSE_CI_HOST || 'https://lighthouse-ci.appspot.com';
-const API_KEY = "24e6e36cf86c43d3b3b5b82429fb4bea" || process.env.API_KEY;
+const API_KEY = process.env.API_KEY;
 const RUNNERS = {chrome: 'chrome', wpt: 'wpt'};
 
 if (process.env.API_KEY) {
@@ -108,6 +108,9 @@ function getConfig() {
   if ('bp' in argv) {
     config.thresholds['best-practices'] = Number(argv.bp);
   }
+  if ('api' in argv) {
+    API_KEY = Number(argv.api);
+  }
 
   if (!config.addComment && !Object.keys(config.thresholds).length) {
     console.log(`Please provide a threshold score for at least one category
@@ -133,6 +136,8 @@ function getConfig() {
 function run(config) {
   let endpoint;
   let body = JSON.stringify(config);
+  console.log(body);
+  console.log(config);
 
   switch (config.runner) {
     case RUNNERS.wpt:
